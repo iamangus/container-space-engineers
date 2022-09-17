@@ -42,4 +42,4 @@ RUN \
 
 COPY entrypoint.sh /home/steam/
 
-ENTRYPOINT /home/steam/entrypoint.sh
+ENTRYPOINT bash /home/steam/entrypoint.sh
