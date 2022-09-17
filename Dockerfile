@@ -32,7 +32,7 @@ RUN \
   makepkg -si --noconfirm && \
   #initial steamcmd configuration
   steamcmd +quit && \
-  cd .. && \
+  cd ..
 
 # Winetricks (This block uses most of the build time)
 COPY winetricks.sh /home/steam/
