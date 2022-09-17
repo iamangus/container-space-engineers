@@ -1,12 +1,12 @@
 #!/bin/bash
 # VARIABLES
 INSTANCE_NAME="se"
-GAME_DIR="~/space-engineers/SpaceEngineersDedicated"
-CONFIG_PATH="~/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
+GAME_DIR="/home/steam/space-engineers/SpaceEngineersDedicated"
+CONFIG_PATH="/home/steam/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
 INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"
-/usr/games/steamcmd +force_install_dir ${GAME_DIR} +login anonymous +@sSteamCmdForcePlatformType windows +app_update 298740 +quit
+steamcmd +force_install_dir ${GAME_DIR} +login anonymous +@sSteamCmdForcePlatformType windows +app_update 298740 +quit
 
 echo "---------------------------------UPDATE CONFIG-------------------------------"
 # update IP to host external ip
@@ -15,7 +15,7 @@ sed -i "s=<IP>.*</IP>=<IP>${INSTANCE_IP}</IP>=g" ${CONFIG_PATH}
 
 # update world save path
 CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed "s=<WorldName>==g" | sed "s=</WorldName>==g")
-SAVE_PATH="Z:\\\\appdata\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
+SAVE_PATH="Z:\\\\home\\\\steamw\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
 sed -i "s=<LoadWorld>.*</LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
 
 echo "-----------------------------CURRENT CONFIGURATION---------------------------"
