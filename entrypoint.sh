@@ -26,10 +26,10 @@ echo "CURRENT_IP=$CURRENT_IP"
 echo "CURRENT_WORLDNAME=$CURRENT_WORLDNAME"
 echo "SAVE_PATH=$SAVE_PATH"
 ## END UPDATES ##
-wine --version
+env WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=/home/steam/wineserver DISPLAY=:5.0 wine64 --version
 echo "----------------------------------START GAME---------------------------------"
 cd ${GAME_DIR}/DedicatedServer64/
-env WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=/home/steam/wineserver DISPLAY=:5.0 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\home\\steam\\space-engineers\\gamesave
+env WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=/home/steam/wineserver DISPLAY=:5.0 wine64 SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\home\\steam\\space-engineers\\gamesave
 echo "-----------------------------------END GAME----------------------------------"
 sleep 10
 echo "-----------------------------------BYE !!!!----------------------------------"
