@@ -37,7 +37,7 @@ RUN \
 # Winetricks (This block uses most of the build time)
 COPY winetricks.sh /home/steam/
 RUN \
-  /home/steam/winetricks.sh && \
+  ./winetricks.sh && \
   rm -f /home/steam/winetricks.sh
 
 COPY entrypoint.sh /home/steam/
