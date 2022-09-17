@@ -1,8 +1,8 @@
 #!/bin/bash
 # VARIABLES
 INSTANCE_NAME="se"
-GAME_DIR="/home/steam/space-engineers/SpaceEngineersDedicated"
-CONFIG_PATH="/home/steam/space-engineers/instances/${INSTANCE_NAME}/SpaceEngineers-Dedicated.cfg"
+GAME_DIR="/home/steam/space-engineers/gameserver"
+CONFIG_PATH="/home/steam/space-engineers/gamesave/SpaceEngineers-Dedicated.cfg"
 INSTANCE_IP=$(hostname -I | sed "s= ==g")
 
 echo "-------------------------------INSTALL & UPDATE------------------------------"
@@ -15,7 +15,7 @@ sed -i "s=<IP>.*</IP>=<IP>${INSTANCE_IP}</IP>=g" ${CONFIG_PATH}
 
 # update world save path
 CURRENT_WORLDNAME=$(grep -oEi '<WorldName>(.*)</WorldName>' ${CONFIG_PATH} | sed "s=<WorldName>==g" | sed "s=</WorldName>==g")
-SAVE_PATH="Z:\\\\home\\\\steamw\\\\space-engineers\\\\instances\\\\${INSTANCE_NAME}\\\\Saves\\\\${CURRENT_WORLDNAME}";
+SAVE_PATH="Z:\\\\home\\\\steam\\\\space-engineers\\\\gamesave\\\\Saves\\\\${CURRENT_WORLDNAME}";
 sed -i "s=<LoadWorld>.*</LoadWorld>=<LoadWorld>${SAVE_PATH}</LoadWorld>=g" ${CONFIG_PATH}
 
 echo "-----------------------------CURRENT CONFIGURATION---------------------------"
@@ -29,7 +29,7 @@ echo "SAVE_PATH=$SAVE_PATH"
 wine --version
 echo "----------------------------------START GAME---------------------------------"
 cd ${GAME_DIR}/DedicatedServer64/
-env WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=/home/steam/wineserver DISPLAY=:5.0 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\home\\steam\\space-engineers\\instances\\${INSTANCE_NAME}
+env WINEARCH=win64 WINEDEBUG=-all WINEPREFIX=/home/steam/wineserver DISPLAY=:5.0 wine SpaceEngineersDedicated.exe -noconsole -ignorelastsession -path Z:\\home\\steam\\space-engineers\\gamesave
 echo "-----------------------------------END GAME----------------------------------"
 sleep 10
 echo "-----------------------------------BYE !!!!----------------------------------"
